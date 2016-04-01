@@ -1,0 +1,11 @@
+{
+  "name": "reactivate",
+  "version": "1.0.0",
+  "description": "React-ivate",
+  "main": "index.js",
+  "author": "dmeads@inclyn.com",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^0.14.8"
+  }
+}
