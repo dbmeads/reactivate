@@ -162,7 +162,7 @@ Notice in the example component above, that there is logic in this form.  It wor
 
 Notice that the submission simply triggers the API.
 
-Do you see how callback = client.account.signUp?  That's the API.
+Do you see ```callback = client.account.signUp```?  That's the API.
 
 The React component simply digests this simple json and renders a full form.  That way my component is consistent in the way it renders, etc.
 
