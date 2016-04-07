@@ -1,5 +1,7 @@
 # Reactivate
 
+Reactivate is an alternative to Redux or Flux.
+
 ## Why use Reactivate.store?
 
 * Reactivate store is unopinionated and treats all updates as state changes.
