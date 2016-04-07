@@ -158,7 +158,7 @@ const SignUp = Reactivate.component({
 });
 ```
 
-First, you can clearly see that there’s no logic in this form.  It works via the API.
+Notice in the example component above, that there is logic in this form.  It works via the API.
 
 Notice that the submission simply triggers the API.
 
