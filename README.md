@@ -176,6 +176,6 @@ So if you have an API that handles states, then React-ivate components can invok
 
 In other words your UI  might invoke an action…an API.  Said differently, user actions in the browser trigger events and your component will handle the event by invoking an action, or in React-ivate's case, an API layer you build or whatever it may be.
 
-All domain is simply state in a stream. (ask dave but I think he's saying all Application UI logic is just the state in a stream).  The front end only has streams for state, and the API manipulates the streams.
+All domain is simply state in a stream. The front end only has streams for state, and the API manipulates the streams.
 
 The API layer replaces actions in Redux.  The output of the API is reflected via state changes in streams simple as that.
