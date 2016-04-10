@@ -7,7 +7,7 @@
 $ npm run build
 
 # Test
-$ npm run test
+$ npm test
 ```
 
 ## Configuration
