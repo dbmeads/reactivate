@@ -26,8 +26,7 @@ Reactivate({
 
 ## Why use Reactivate.store?
 
-* Reactivate store is unopinionated and treats all updates as state changes.
-* Actions in Redux are overkill in my opinion.
+* Reactivate store is a simple subscription based state engine.
 
 ```js
 import Reactivate from 'reactivate';
