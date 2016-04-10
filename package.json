@@ -1,6 +1,6 @@
 {
   "name": "reactivate",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "React'ivate",
   "main": "dist/lib/index.js",
   "author": "dmeads@inclyn.com",
