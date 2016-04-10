@@ -1,8 +1,8 @@
 {
   "name": "reactivate",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "React'ivate",
-  "main": "dist/index.js",
+  "main": "dist/lib/index.js",
   "author": "dmeads@inclyn.com",
   "license": "MIT",
   "repository": {
@@ -10,10 +10,10 @@
     "url": "git://github.com/Inclyn/reactivate.git"
   },
   "scripts": {
-    "babel": "babel src/lib -d lib && babel src/test -d test",
+    "babel": "babel lib -d dist/lib && babel test -d dist/test",
     "build": "npm run clean && npm run babel",
-    "clean": "rm -rf lib && rm -rf test",
-    "mocha": "mocha",
+    "clean": "rm -rf dist",
+    "mocha": "mocha \"dist/test/**/*-spec.js\"",
     "test": "npm run build && npm run mocha"
   },
   "dependencies": {

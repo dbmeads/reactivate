@@ -6,11 +6,9 @@ describe('store', () => {
     var store = Reactivate.store('profile');
 
     it('should be immutable.', () => {
-        var state = {name: 'Frank'};
+        store.setState({name: 'Frank'});
 
-        store.setState(state);
-
-        state.name = 'Jim';
+        store.getState().name = 'Jim';
 
         expect(store.getState().name).to.eql('Frank');
     });
