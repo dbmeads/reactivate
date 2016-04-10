@@ -10,19 +10,9 @@ $ npm run build
 $ npm test
 ```
 
-## Configuration
+## Installation
 
-* From the entry point in your appication, run Reactivate and pass in the version of React you wish to use.
-
-```js
-import React from 'react';
-import Reactivate from 'reactivate';
-
-Reactivate({
-    React: React
-});
-
-```
+* Reactivate assumes you'll have your favorite version of React already installed.
 
 ## Why use Reactivate.store?
 
