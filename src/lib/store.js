@@ -1,36 +1,41 @@
-'use strict';
+import config from './config';
 
-var stores = {};
+const options = config();
+const stores = {};
+
+function processState(state) {
+    return options.immutable ? Object.assign({}, state) : state
+}
 
 function newStore(key) {
     var subs = new Set();
     var currentState = null;
 
     return stores[key] = {
-        setState: function (state) {
-            currentState = state;
-            subs.forEach(function (callback) {
+        setState(state) {
+            currentState = processState(state);
+            subs.forEach(callback => {
                 callback(currentState);
             });
             return this;
         },
-        getState: function () {
-            return currentState;
+        getState() {
+            return processState(currentState);
         },
-        subscribe: function (callback) {
+        subscribe(callback) {
             subs.add(callback);
             return this;
         },
-        unsubscribe: function (callback) {
+        unsubscribe(callback) {
             subs.delete(callback);
             return this;
         }
     };
 }
 
-module.exports = function store(key) {
+export default key => {
     if (stores[key]) {
         return stores[key];
     }
     return newStore(key);
-}
+};
