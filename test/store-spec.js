@@ -20,7 +20,7 @@ describe('store', () => {
         expect(store.getState().name).to.eql('Frank');
     });
 
-    it('should validate against json schema.', () => {
+    it('should validate against JSON Schema.', () => {
         expect(() => store.setState({name: 'Don', extraProp: 'Hi!'})).to.throw(Error);
     });
 });
