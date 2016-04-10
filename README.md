@@ -27,7 +27,7 @@ Reactivate({
 ## Why use Reactivate.store?
 
 * Reactivate store is a simple subscription based state engine.
-* Reactivate store optionally supports JSON Schema based validation on any store. (http://json-schema.org/)
+* Reactivate store supports JSON Schema based validation on any store. (http://json-schema.org/)
 
 ```js
 import Reactivate from 'reactivate';
@@ -50,7 +50,7 @@ console.log(JSON.stringify(store.getState()));
 // You can unsubscribe from state updates as well
 store.unsubscribe(callback);
 
-// You can optionally add JSON Schema based validation to any store
+// You can add JSON Schema based validation to any store
 store.setSchema({
     type: 'object',
     properties: {
@@ -62,7 +62,7 @@ store.setSchema({
     required: ['name']
 });
 
-// This state will fail JSON Schema validation as `name` is not present.
+// Will fail JSON Schema validation as `name` is not present.
 store.setState({});
 
 ```
