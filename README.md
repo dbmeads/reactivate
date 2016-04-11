@@ -60,7 +60,8 @@ store.setState({});
 ## Why use Reactivate.component?
 
 * Reactivate components are pre-wired to update whenever a Reactivate store changes state.
-* Reactivate components are React components with a sprinkling of magic.
+* Reactivate components are React components with more robust state management.
+* Reactivate components support stateful primitives, arrays, objects, etc.
 
 ```js
 import Reactivate from 'reactivate';
@@ -68,10 +69,13 @@ import { render } from 'react-dom';
 
 const store = Reactivate.store('/helloworld');
 
+// You can use this.getState() within a component to get the current state.
+// You can use this.setState(state) within a component to update the state.
+// Note that this.state will be null as Reactivate does not set it.
 const HelloWorld = Reactivate.component({
     render: function() {
         return (
-            <div><span>Hello {this.store.getState()}!</span></div>
+            <div><span>Hello {this.getState()}!</span></div>
         );
     }
 });
