@@ -1,4 +1,4 @@
-# Reactivate/React'ivate
+# Reactivate
 
 ## Building/Contributing
 

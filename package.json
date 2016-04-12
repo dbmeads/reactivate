@@ -1,13 +1,13 @@
 {
   "name": "reactivate",
   "version": "1.3.3",
-  "description": "React'ivate",
+  "description": "Reactivate",
   "main": "dist/lib/index.js",
-  "author": "dmeads@inclyn.com",
+  "author": "dbmeads@hotmail.com",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/Inclyn/reactivate.git"
+    "url": "git://github.com/dbmeads/reactivate.git"
   },
   "scripts": {
     "babel": "babel lib -d dist/lib && babel test -d dist/test",
