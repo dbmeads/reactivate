@@ -18,15 +18,15 @@ $ npm test
 
 * Reactivate assumes you'll have your favorite version of React already installed.
 
-## Why use Reactivate.store?
+## Why use Store?
 
-* Reactivate store is a simple subscription based state engine.
-* Reactivate store supports JSON Schema based validation on any store. (http://json-schema.org/)
+* Store is a simple subscription based state engine.
+* Store supports JSON Schema based validation on any store. (http://json-schema.org/)
 
 ```js
-import Reactivate from 'reactivate';
+import {Store} from 'reactivate';
 
-const store = Reactivate.store('/profile');
+const store = Store('/profile');
 
 function callback(state) {
     console.log('My name is ' + state.name + '!');
@@ -61,22 +61,22 @@ store.setState({});
 
 ```
 
-## Why use Reactivate.component?
+## Why use Component?
 
-* Reactivate components are pre-wired to update whenever a Reactivate store changes state.
-* Reactivate components are React components with more robust state management.
-* Reactivate components support stateful primitives, arrays, objects, etc.
+* Components are pre-wired to update whenever a Reactivate store changes state.
+* Components are React components with more robust state management.
+* Components support stateful primitives, arrays, objects, etc.
 
 ```js
-import Reactivate from 'reactivate';
+import {Component,Store} from 'reactivate';
 import { render } from 'react-dom';
 
-const store = Reactivate.store('/helloworld');
+const store = Store('/helloworld');
 
 // You can use this.getState() within a component to get the current state.
 // You can use this.setState(state) within a component to update the state.
 // Note that this.state will be null as Reactivate does not set it.
-const HelloWorld = Reactivate.component({
+const HelloWorld = Component({
     render: function() {
         return (
             <div><span>Hello {this.getState()}!</span></div>

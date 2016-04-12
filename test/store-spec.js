@@ -1,4 +1,4 @@
-import Reactivate from '../lib/index';
+import {Store} from '../lib/index';
 import {expect} from 'chai';
 import uuid from 'uuid';
 
@@ -7,7 +7,7 @@ describe('store', () => {
     var store;
 
     beforeEach(() => {
-        store = Reactivate.store(uuid.v4());
+        store = Store(uuid.v4());
     });
 
     it('should be immutable.', () => {
