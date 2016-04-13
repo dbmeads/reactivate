@@ -20,7 +20,7 @@ $ npm test
 
 ## Example Apps
 
-[Hello World!](https://github.com/dbmeads/reactivate.helloworld)
+[Hello Reactivate!](https://github.com/dbmeads/reactivate.helloworld)
 
 ## Why use Store?
 
