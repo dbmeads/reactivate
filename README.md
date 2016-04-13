@@ -25,7 +25,7 @@ $ npm test
 ## Why use Store?
 
 * Store is a simple subscription based state engine.
-* Store supports JSON Schema based validation on any store. (http://json-schema.org/)
+* Store optionally supports JSON Schema based validation. (http://json-schema.org/)
 
 ```js
 import {Store} from 'reactivate';
