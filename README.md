@@ -18,6 +18,10 @@ $ npm test
 
 * Reactivate assumes you'll have your favorite version of React already installed.
 
+## Example Apps
+
+[Hello World!](https://github.com/dbmeads/reactivate.helloworld)
+
 ## Why use Store?
 
 * Store is a simple subscription based state engine.
@@ -69,28 +73,39 @@ store.setState({});
 
 ```js
 import {Component,Store} from 'reactivate';
-import { render } from 'react-dom';
+import {render} from 'react-dom';
 
-const store = Store('/helloworld');
-
-// You can use this.getState() within a component to get the current state.
-// You can use this.setState(state) within a component to update the state.
-// Note that this.state will be null as Reactivate does not set it.
 const HelloWorld = Component({
-    render: function() {
+    store: Store('/profile'),
+    getInitialState() {
+        return {name: 'World'};
+    },
+    onChange(event) {
+        this.setState({
+            name: event.target.value
+        });
+    },
+    render() {
         return (
-            <div><span>Hello {this.getState()}!</span></div>
-        );
+            <div>
+                <Greeting store={this.store}/>
+                <div>
+                    <hr/>
+                    <input type="text" onChange={this.onChange} placeholder="Enter Name"/>
+                </div>
+            </div>
+        )
+    }
+});
+
+const Greeting = Component({
+    render() {
+        return <span>Hello {this.getState().name}!</span>
     }
 });
 
 render(
-    <HelloWorld store={store}></HelloWorld>,
-    document.getElementsByName('body')[0]
+    <HelloWorld></HelloWorld>,
+    document.getElementById('app')
 );
-
-store.setState('world');
-store.setState('Jim');
-store.setState('John');
-
 ```
