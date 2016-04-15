@@ -26,11 +26,12 @@ $ npm test
 
 * Store is a simple subscription based state engine.
 * Store optionally supports JSON Schema based validation. (http://json-schema.org/)
+* Store supports keys (e.g.: `Store([key])`) that register a store for easy retrieval at a later time.
 
 ```js
 import {Store} from 'reactivate';
 
-const store = Store('/profile');
+const store = Store();
 
 // You can subscribe to receive state updates
 var unsubscribe = store.subscribe(state => console.log('My name is ' + state.name + '!'));
@@ -52,7 +53,6 @@ unsubscribe();
 ```js
 
 ...
-
 
 store.setSchema({
     type: 'object',
@@ -80,7 +80,7 @@ import {Component,Store} from 'reactivate';
 import {render} from 'react-dom';
 
 const HelloWorld = Component({
-    store: Store('/profile'),
+    store: Store(),
     getInitialState() {
         return {name: 'World'};
     },
