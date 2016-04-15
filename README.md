@@ -14,7 +14,7 @@ $ npm run build
 $ npm test
 ```
 
-## Installation
+## Installation Notes
 
 * Reactivate assumes you'll have your favorite version of React already installed.
 
@@ -32,13 +32,8 @@ import {Store} from 'reactivate';
 
 const store = Store('/profile');
 
-function callback(state) {
-    console.log('My name is ' + state.name + '!');
-}
-
-// You can subscribe to receive state updates and receive
-// a function that can be used to unsubscribe at a later time
-var unsubscribe = store.subscribe(callback);
+// You can subscribe to receive state updates
+var unsubscribe = store.subscribe(state => console.log('My name is ' + state.name + '!'));
 
 // You can update state
 store.setState({name: 'Bob'});
@@ -46,7 +41,19 @@ store.setState({name: 'Bob'});
 // You can get the current state at any time
 console.log(JSON.stringify(store.getState()));
 
-// You can add JSON Schema based validation to any store
+// You can unsubscribe at a later time by using the function returned from subscribe
+unsubscribe();
+```
+
+### JSON Schema Validation
+
+* JSON Schema may be set on a store to provide state validation
+
+```js
+
+...
+
+
 store.setSchema({
     type: 'object',
     properties: {
@@ -60,7 +67,6 @@ store.setSchema({
 
 // Will fail JSON Schema validation as `name` is not present.
 store.setState({});
-
 ```
 
 ## Why use Component?
