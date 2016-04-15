@@ -4,6 +4,17 @@
 [![npm version](https://img.shields.io/npm/v/reactivate.svg?style=flat-square)](https://www.npmjs.com/package/reactivate)
 [![npm downloads](https://img.shields.io/npm/dm/reactivate.svg?style=flat-square)](https://www.npmjs.com/package/reactivate)
 
+## Quick Links
+
+#### General
+[Change Log](#change-log)
+[Examples](#example-apps)
+[Installation](#installation)
+
+#### Modules
+[Store] (#why-use-store)
+[Component] (#why-use-component)
+
 ## Building/Contributing
 
 ```
@@ -14,7 +25,7 @@ $ npm run build
 $ npm test
 ```
 
-## Installation Notes
+## Installation
 
 * Reactivate assumes you'll have your favorite version of React already installed.
 
@@ -37,13 +48,36 @@ const store = Store();
 var unsubscribe = store.subscribe(state => console.log('My name is ' + state.name + '!'));
 
 // You can update state
-store.setState({name: 'Bob'});
+store.push({name: 'Bob'});
 
 // You can get the current state at any time
-console.log(JSON.stringify(store.getState()));
+console.log(JSON.stringify(store.value()));
 
 // You can unsubscribe at a later time by using the function returned from subscribe
 unsubscribe();
+```
+
+### Store Options
+```js
+
+const options = {
+    capacity: 10 // Maximum number of state changes to retain at any given time (defaults to 1)
+    schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
+}
+
+// A private store that utilizes default options
+const store = Store();
+
+// A private store that utilizes provided options
+const store = Store(options);
+
+// A public store that utilizes default options
+const store = Store('myStore');
+
+// A public store that utilizes provided options
+const store = Store('myStore', options);
+
+
 ```
 
 ### JSON Schema Validation
@@ -52,27 +86,27 @@ unsubscribe();
 
 ```js
 
-...
-
-store.setSchema({
-    type: 'object',
-    properties: {
-        name: {
-            type: 'string'
-        }
-    },
-    additionalProperties: false,
-    required: ['name']
+const store = Store({
+    schema: {
+        type: 'object',
+        properties: {
+            name: {
+                type: 'string'
+            }
+        },
+        additionalProperties: false,
+        required: ['name']
+    }
 });
 
-// Will fail JSON Schema validation as `name` is not present.
-store.setState({});
+// Will throw a validation error
+store.push({});
 ```
 
 ## Why use Component?
 
-* Components are pre-wired to update whenever a Reactivate store changes state.
-* Components are React components with more robust state management.
+* Components are pre-wired to render whenever a Reactivate store changes state.
+* Components are React components and still support the React features you've come to love.
 * Components support stateful primitives, arrays, objects, etc.
 
 ```js
@@ -85,7 +119,7 @@ const HelloWorld = Component({
         return {name: 'World'};
     },
     onChange(event) {
-        this.setState({
+        this.store.push({
             name: event.target.value
         });
     },
@@ -104,7 +138,7 @@ const HelloWorld = Component({
 
 const Greeting = Component({
     render() {
-        return <span>Hello {this.getState().name}!</span>
+        return <span>Hello {this.store.value().name}!</span>
     }
 });
 
@@ -113,3 +147,13 @@ render(
     document.getElementById('app')
 );
 ```
+
+## Change Log
+
+
+#### 1.5.0                      
+1. Changed "setState" to "push" in preparation for new features. 
+2. Changed "getState" to "value" in preparation for new features.
+3. Added "History" module to record pushes.
+4. Component now works through the "this.store" reference.
+5. Due to history, you can now iterate over store.values() as a stream.
