@@ -113,10 +113,10 @@ store.push({});
 import {Component,Store} from 'reactivate';
 import {render} from 'react-dom';
 
-const HelloWorld = Component({
-    store: Store(),
+const HelloReactivate = Component({
+    store: Store('/profile'),
     getInitialState() {
-        return {name: 'World'};
+        return {name: 'Reactivate'};
     },
     onChange(event) {
         this.store.push({
@@ -143,7 +143,7 @@ const Greeting = Component({
 });
 
 render(
-    <HelloWorld></HelloWorld>,
+    <HelloReactivate></HelloReactivate>,
     document.getElementById('app')
 );
 ```
