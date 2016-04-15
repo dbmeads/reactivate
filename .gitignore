@@ -4,3 +4,4 @@ npm-debug.log
 target
 build
 dist
+npm-shrinkwrap.json

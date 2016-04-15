@@ -7,13 +7,13 @@
 ## Quick Links
 
 #### General
-[Change Log](#change-log)
-[Examples](#example-apps)
-[Installation](#installation)
+* [Change Log](#change-log)
+* [Examples](#example-apps)
+* [Installation](#installation)
 
 #### Modules
-[Store] (#why-use-store)
-[Component] (#why-use-component)
+* [Store] (#store)
+* [Component] (#component)
 
 ## Building/Contributing
 
@@ -33,7 +33,7 @@ $ npm test
 
 [Hello Reactivate!](https://github.com/dbmeads/reactivate.helloworld)
 
-## Why use Store?
+## Store
 
 * Store is a simple subscription based state engine.
 * Store optionally supports JSON Schema based validation. (http://json-schema.org/)
@@ -103,7 +103,7 @@ const store = Store({
 store.push({});
 ```
 
-## Why use Component?
+## Component
 
 * Components are pre-wired to render whenever a Reactivate store changes state.
 * Components are React components and still support the React features you've come to love.
