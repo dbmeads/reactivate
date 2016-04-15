@@ -46,4 +46,26 @@ describe('store', () => {
     it('should handle booleans', () => {
         expect(store.setState(false).getState()).to.eql(false);
     });
+
+    it('should support subscribe', done => {
+        store.subscribe(state => {
+            expect(state).to.equal('HI!');
+            done();
+        });
+
+        store.setState('HI!');
+    });
+
+    it('should support unsubscribe', done => {
+        store.subscribe(() => {
+            throw new Error('failed to unsubscribe...');
+        })();
+
+        store.subscribe(state => {
+            expect(state).to.equal('HI!');
+            done();
+        });
+
+        store.setState('HI!');
+    });
 });

@@ -1,6 +1,6 @@
 {
   "name": "reactivate",
-  "version": "1.4.2",
+  "version": "1.4.6",
   "description": "Reactivate",
   "main": "dist/lib/index.js",
   "author": "dbmeads@hotmail.com",

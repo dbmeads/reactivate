@@ -36,17 +36,15 @@ function callback(state) {
     console.log('My name is ' + state.name + '!');
 }
 
-// You can subscribe to receive state updates
-store.subscribe(callback);
+// You can subscribe to receive state updates and receive
+// a function that can be used to unsubscribe at a later time
+var unsubscribe = store.subscribe(callback);
 
 // You can update state
 store.setState({name: 'Bob'});
 
 // You can get the current state at any time
 console.log(JSON.stringify(store.getState()));
-
-// You can unsubscribe from state updates as well
-store.unsubscribe(callback);
 
 // You can add JSON Schema based validation to any store
 store.setSchema({
