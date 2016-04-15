@@ -32,7 +32,11 @@ describe('store', () => {
     });
 
     it('should handle arrays', () => {
-        expect(store.setState([{name: 'Jim'}, {name: 'Bob'}]).getState().length).to.eql(2);
+        var expected = [{name: 'Jim'}, {name: 'Bob'}];
+        var actual = store.setState(expected).getState();
+        for (let i = 0; i < expected.length; i++) {
+            expect(actual[i]).to.eql(expected[i]);
+        }
     });
 
     it('should handle strings', () => {
