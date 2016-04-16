@@ -3,6 +3,7 @@
 [![Build Status](https://img.shields.io/travis/dbmeads/reactivate/master.svg?style=flat-square)](https://travis-ci.org/dbmeads/reactivate)
 [![npm version](https://img.shields.io/npm/v/reactivate.svg?style=flat-square)](https://www.npmjs.com/package/reactivate)
 [![npm downloads](https://img.shields.io/npm/dm/reactivate.svg?style=flat-square)](https://www.npmjs.com/package/reactivate)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md#pull-requests)
 
 ## Quick Links
 
@@ -12,8 +13,8 @@
 * [Installation](#installation)
 
 #### Modules
-* [Store] (#store)
-* [Component] (#component)
+* [Store](#store)
+* [Component](#component)
 
 ## Building/Contributing
 
@@ -61,8 +62,8 @@ unsubscribe();
 ```js
 
 const options = {
-    capacity: 10 // Maximum number of state changes to retain at any given time (defaults to 1)
-    immutable: [true|false] // Should the store protect against outside tampering of state data? (defaults to true)
+    capacity: 10, // Maximum number of state changes to retain at any given time (defaults to 1)
+    immutable: <true|false>, // Should the store protect against outside tampering of state data? (defaults to true)
     schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
 }
 
@@ -152,7 +153,7 @@ render(
 ## Change Log
 
 #### 1.5.3
-1. Added "immutable" option to store.
+1. Added "immutable" option to Store.
 
 #### 1.5.0                      
 1. Changed "setState" to "push" in preparation for new features. 
