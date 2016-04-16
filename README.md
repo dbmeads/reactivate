@@ -58,6 +58,7 @@ console.log(JSON.stringify(store.value()));
 
 // You can unsubscribe at a later time by using the function returned from subscribe
 unsubscribe();
+
 ```
 
 ### Store Options
@@ -69,16 +70,16 @@ const options = {
     schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
 }
 
-// A private store that utilizes default options
+// Unnamed store that utilizes default options
 const store = Store();
 
-// A private store that utilizes provided options
+// Unnamed store that utilizes provided options
 const store = Store(options);
 
-// A public store that utilizes default options
+// Named store that utilizes default options
 const store = Store('myStore');
 
-// A public store that utilizes provided options
+// Named store that utilizes provided options
 const store = Store('myStore', options);
 
 
@@ -106,6 +107,11 @@ const store = Store({
 // Will throw a validation error
 store.push({});
 ```
+
+### Additional Store Features
+
+* `size` will return the number of states currently in memory.
+* `changeCount` will return the total number of state changes (Some will be lost if capacity is less than unlimited).
 
 [Back To Top](#reactivate)
 
