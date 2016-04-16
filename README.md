@@ -62,6 +62,7 @@ unsubscribe();
 
 const options = {
     capacity: 10 // Maximum number of state changes to retain at any given time (defaults to 1)
+    immutable: [true|false] // Should the store protect against outside tampering of state data? (defaults to true)
     schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
 }
 
@@ -150,6 +151,8 @@ render(
 
 ## Change Log
 
+#### 1.5.3
+1. Added "immutable" option to store.
 
 #### 1.5.0                      
 1. Changed "setState" to "push" in preparation for new features. 

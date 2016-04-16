@@ -15,6 +15,16 @@ describe('Store', () => {
         expect(store.value().name).to.eql('Frank');
     });
 
+    it('should support mutable as well (for performance reasons)', () => {
+        store = Store({
+            immutable: false
+        });
+
+        store.push({name: 'Frank'}).value().name = 'Jim';
+
+        expect(store.value().name).to.eql('Jim');
+    });
+
     it('should validate against JSON Schema.', () => {
         store = Store({
             schema: {
