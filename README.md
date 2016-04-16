@@ -64,7 +64,7 @@ unsubscribe();
 ```js
 
 const options = {
-    capacity: 10, // Maximum number of state changes to retain at any given time (defaults to 1)
+    capacity: 0, // Maximum state changes to retain.  O equals unlimited.  (Store defaults to 1)
     immutable: <true|false>, // Should the store protect against outside tampering of state data? (defaults to true)
     schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
 }
@@ -157,6 +157,11 @@ render(
 [Back To Top](#reactivate)
 
 ## Change Log
+
+#### 1.5.4
+1. Added "changeCount" to Store via history.
+2. Added "size" to Store via history.
+2. Added allowance for unlimited capacity when set to 0.  Default to Store is still 1.
 
 #### 1.5.3
 1. Added "immutable" option to Store.
