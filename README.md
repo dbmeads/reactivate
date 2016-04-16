@@ -32,7 +32,7 @@ $ npm test
 
 ## Example Apps
 
-[Hello Reactivate!](https://github.com/dbmeads/reactivate.helloworld)
+* [Hello Reactivate!](https://github.com/dbmeads/reactivate.helloworld)
 
 [Back To Top](#reactivate)
 
