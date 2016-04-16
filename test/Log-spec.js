@@ -1,13 +1,13 @@
-import {History} from '../lib/history';
+import {Log} from '../lib/Log';
 import {expect} from 'chai';
 import uuid from 'uuid';
 
-describe('History', () => {
+describe('Log', () => {
 
-    var history;
+    var log;
 
     beforeEach(() => {
-        history = History({
+        log = Log({
             capacity: 2
         });
     });
@@ -16,12 +16,12 @@ describe('History', () => {
         var profiles = [{name: 'Jim'}, {name: 'Bob'}, {name: 'Frank'}];
 
         profiles.forEach(profile => {
-            history.push(profile);
+            log.push(profile);
         });
 
         profiles.shift();
 
-        var values = history.values();
+        var values = log.values();
 
         expect(values.length).to.equal(2);
 
@@ -32,11 +32,11 @@ describe('History', () => {
 
     it('should detect change count and size', () => {
         for (let i = 0; i < 10; i++) {
-            history.push({name: uuid.v4()});
+            log.push({name: uuid.v4()});
         }
 
-        expect(history.size()).to.equal(2);
-        expect(history.changeCount()).to.equal(10);
+        expect(log.size()).to.equal(2);
+        expect(log.changeCount()).to.equal(10);
     });
 
 });

@@ -164,10 +164,14 @@ render(
 
 ## Change Log
 
+#### 1.5.8
+1. "History" is now more fittingly named "Log".
+2. "Log" is exposed as future functionality will utilize it directly (e.g. time machine support).
+
 #### 1.5.4
 1. Added "changeCount" to Store via history.
 2. Added "size" to Store via history.
-2. Added allowance for unlimited capacity when set to 0.  Default to Store is still 1.
+3. Added allowance for unlimited capacity when set to 0.  Default to Store is still 1.
 
 #### 1.5.3
 1. Added "immutable" option to Store.
