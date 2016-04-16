@@ -34,7 +34,7 @@ $ npm test
 
 * [Hello Reactivate!](https://github.com/dbmeads/reactivate.helloworld)
 
-[Back To Top](#reactivate)
+[Back To Top](#quick-links)
 
 ## Store
 
@@ -113,7 +113,7 @@ store.push({});
 * `size` will return the number of states currently in memory.
 * `changeCount` will return the total number of state changes (Some will be lost if capacity is less than unlimited).
 
-[Back To Top](#reactivate)
+[Back To Top](#quick-links)
 
 ## Component
 
@@ -160,7 +160,7 @@ render(
 );
 ```
 
-[Back To Top](#reactivate)
+[Back To Top](#quick-links)
 
 ## Change Log
 
@@ -179,4 +179,4 @@ render(
 4. Component now works through the "this.store" reference.
 5. Due to history, you can now iterate over store.values() as a stream.
 
-[Back To Top](#reactivate)
+[Back To Top](#quick-links)
