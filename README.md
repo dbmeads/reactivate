@@ -105,6 +105,8 @@ const store = Store({
 store.push({});
 ```
 
+[Back To Top](#reactivate)
+
 ## Component
 
 * Components are pre-wired to render whenever a Reactivate store changes state.
@@ -150,6 +152,8 @@ render(
 );
 ```
 
+[Back To Top](#reactivate)
+
 ## Change Log
 
 #### 1.5.3
@@ -161,3 +165,5 @@ render(
 3. Added "History" module to record pushes.
 4. Component now works through the "this.store" reference.
 5. Due to history, you can now iterate over store.values() as a stream.
+
+[Back To Top](#reactivate)
