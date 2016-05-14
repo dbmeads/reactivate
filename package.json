@@ -1,6 +1,6 @@
 {
   "name": "reactivate",
-  "version": "1.5.8",
+  "version": "2.0.0",
   "description": "Reactivate",
   "main": "dist/lib/index.js",
   "author": "dbmeads@hotmail.com",
@@ -13,18 +13,22 @@
     "babel": "babel lib -d dist/lib && babel test -d dist/test",
     "build": "npm run clean && npm run babel",
     "clean": "rm -rf dist",
-    "mocha": "mocha \"dist/test/**/*-spec.js\"",
+    "mocha": "mocha \"dist/test/**/*.spec.js\"",
     "test": "npm run build && npm run mocha"
-  },
-  "dependencies": {
-    "tv4": "^1.2.7"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
     "babel-preset-es2015": "^6.6.0",
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
-    "react": "^15.0.1",
     "uuid": "^2.0.1"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "rille": "^0.12.0",
+    "rille-react": "^0.7.0",
+    "rille-remote": "^0.2.0",
+    "socket.io": "^1.4.6",
+    "socket.io-client": "^1.4.6"
   }
 }

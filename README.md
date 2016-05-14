@@ -8,27 +8,22 @@
 ## Quick Links
 
 #### General
-* [Change Log](#change-log)
-* [Examples](#example-apps)
 * [Installation](#installation)
+* [Examples](#example-apps)
+* [Change Log](#change-log)
 
 #### Modules
+* [Key](#key)
+* [Entry](#entry)
+* [Route](#route)
 * [Store](#store)
 * [Component](#component)
-
-## Building/Contributing
-
-```
-# Build
-$ npm run build
-
-# Test
-$ npm test
-```
+* [Server](#server)
+* [Client](#client)
 
 ## Installation
 
-* Reactivate assumes you'll have your favorite version of React already installed.
+`npm install reactivate --save`
 
 ## Example Apps
 
@@ -36,11 +31,78 @@ $ npm test
 
 [Back To Top](#quick-links)
 
+## Key
+
+Keys identify locations where data may be stored or routed.  They are similar to what you would see as a path in a file system or key in a key/value store.
+
+```js
+
+// You can parse a key and get an array containing it's parts
+let keys = Key.parse('/some/path/that/I/should/parse);
+
+// You can stringify the parts of a key as well
+let key = Key.parse(['some','path','that','I','should','parse']);
+
+```
+
+[Back To Top](#quick-links)
+
+## Entry
+
+Entries are simply arrays where the first item (the head) is the key and the remaining items (the tail) contain data.
+
+```js
+
+// An example entry might look something like this
+
+var key = '/some/key';
+var data = 'Hi!';
+var someOtherData = {created: '10/16/2015 10:15PM', user: 'Dan'};
+
+var entry = [key, data, someOtherData];
+
+```
+
+
+[Back To Top](#quick-links)
+
+## Route
+
+* The core of Rille is based on event routing.
+* Route is a basic extendable event router.
+* An "Entry" is a term we use to describe the array of data that is routed.
+* Entries have their "Key" which is the route they were pushed to as the first item in the Entry array.
+
+```js
+import {Route} from 'reactivate';
+
+// You can create new root routes easily
+const route = Route();
+
+// You can define child routes on demand
+const child = route('/child/1');
+
+// You can subscribe to routes
+var unsubscribe = child.subscribe((key, value) => {
+    console.log("non wildcard: " + JSON.stringify([key, value]));
+});
+
+// You can unsubscribe to routes
+unsubscribe();
+
+// You can subscribe to wildcard routes and get updates for all matching routes
+route('/child/*').subscribe((...entry) => {
+    console.log("wildcard: " + JSON.stringify(entry));
+});
+
+// You can push any data to a route it's subscribers will get the data
+// 
+child.push({message: 'Hi!'});
+```
+
 ## Store
 
-* Store is a simple subscription based state engine.
-* Store optionally supports JSON Schema based validation. (http://json-schema.org/)
-* Store supports keys (e.g.: `Store([key])`) that register a store for easy retrieval at a later time.
+* Store is simply a route that retains the most recent entry.
 
 ```js
 import {Store} from 'reactivate';
@@ -48,78 +110,21 @@ import {Store} from 'reactivate';
 const store = Store();
 
 // You can subscribe to receive state updates
-var unsubscribe = store.subscribe(state => console.log('My name is ' + state.name + '!'));
+var unsubscribe = store.subscribe((key, value) => console.log('My name is ' + value + '!'));
 
 // You can update state
-store.push({name: 'Bob'});
+store.push('Bob');
 
-// You can get the current state at any time
-console.log(JSON.stringify(store.value()));
-
-// You can unsubscribe at a later time by using the function returned from subscribe
-unsubscribe();
+console.log(JSON.stringify(store.entry()));
 
 ```
-
-### Store Options
-```js
-
-const options = {
-    capacity: 0, // Maximum state changes to retain.  O equals unlimited.  (Store defaults to 1)
-    immutable: <true|false>, // Should the store protect against outside tampering of state data? (defaults to true)
-    schema: ... // JSON Schema for the store to validate state changes against (defaults to no validation)
-}
-
-// Unnamed store that utilizes default options
-const store = Store();
-
-// Unnamed store that utilizes provided options
-const store = Store(options);
-
-// Named store that utilizes default options
-const store = Store('myStore');
-
-// Named store that utilizes provided options
-const store = Store('myStore', options);
-
-
-```
-
-### JSON Schema Validation
-
-* JSON Schema may be set on a store to provide state validation
-
-```js
-
-const store = Store({
-    schema: {
-        type: 'object',
-        properties: {
-            name: {
-                type: 'string'
-            }
-        },
-        additionalProperties: false,
-        required: ['name']
-    }
-});
-
-// Will throw a validation error
-store.push({});
-```
-
-### Additional Store Features
-
-* `size` will return the number of states currently in memory.
-* `changeCount` will return the total number of state changes (Some will be lost if capacity is less than unlimited).
 
 [Back To Top](#quick-links)
 
 ## Component
 
-* Components are pre-wired to render whenever a Reactivate store changes state.
+* Components are pre-wired to render whenever a Reactivate store receives data.
 * Components are React components and still support the React features you've come to love.
-* Components support stateful primitives, arrays, objects, etc.
 
 ```js
 import {Component,Store} from 'reactivate';
@@ -128,7 +133,7 @@ import {render} from 'react-dom';
 const HelloReactivate = Component({
     store: Store('/profile'),
     getInitialState() {
-        return {name: 'Reactivate'};
+        this.store.push({name: 'Reactivate'});
     },
     onChange(event) {
         this.store.push({
@@ -150,7 +155,7 @@ const HelloReactivate = Component({
 
 const Greeting = Component({
     render() {
-        return <span>Hello {this.store.value().name}!</span>
+        return <span>Hello {this.store.entry()[1].name}!</span>
     }
 });
 
@@ -162,7 +167,23 @@ render(
 
 [Back To Top](#quick-links)
 
+## Client
+
+[See Tests For Now](https://github.com/dbmeads/rille-remote/blob/master/test/Remote.spec.js)
+
+[Back To Top](#quick-links)
+
+## Server
+
+[See Tests For Now](https://github.com/dbmeads/rille-remote/blob/master/test/Remote.spec.js)
+
+[Back To Top](#quick-links)
+
 ## Change Log
+
+#### 1.6.0
+1. Reactivate now uses "rille", "rille-react" and "rille-remote".
+2. Reactivate is now an all in one solution for people who like all things Rille, React and Socket.io.
 
 #### 1.5.8
 1. "History" is now more fittingly named "Log".
