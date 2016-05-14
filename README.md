@@ -38,7 +38,7 @@ Keys identify locations where data may be stored or routed.  They are similar to
 ```js
 
 // You can parse a key and get an array containing it's parts
-let keys = Key.parse('/some/path/that/I/should/parse);
+let keys = Key.parse('/some/path/that/I/should/parse');
 
 // You can stringify the parts of a key as well
 let key = Key.parse(['some','path','that','I','should','parse']);
