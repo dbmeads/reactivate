@@ -186,7 +186,7 @@ render(
 
 ## Change Log
 
-#### 1.6.0
+#### 2.0.0
 1. Reactivate now uses "rille", "rille-react" and "rille-remote".
 2. Reactivate is now an all in one solution for people who like all things Rille, React and Socket.io.
 
