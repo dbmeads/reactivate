@@ -9,7 +9,6 @@ Reactivate is a module that is a composition of many other useful modules:
 
 1. [Rille](http://rille.io)
 2. [React](https://facebook.github.io/react/)
-3. [Socket.io](http://socket.io/)
 
 ## Quick Links
 
@@ -24,8 +23,6 @@ Reactivate is a module that is a composition of many other useful modules:
 * [Route](#route)
 * [Store](#store)
 * [Component](#component)
-* [Server](#server)
-* [Client](#client)
 
 ## Installation
 
@@ -172,23 +169,11 @@ render(
 
 [Back To Top](#quick-links)
 
-## Client
-
-[See Tests For Now](https://github.com/dbmeads/rille-remote/blob/master/test/Remote.spec.js)
-
-[Back To Top](#quick-links)
-
-## Server
-
-[See Tests For Now](https://github.com/dbmeads/rille-remote/blob/master/test/Remote.spec.js)
-
-[Back To Top](#quick-links)
-
 ## Change Log
 
 #### 2.0.0
-1. Reactivate now uses "rille", "rille-react" and "rille-remote".
-2. Reactivate is now an all in one solution for people who like all things Rille, React and Socket.io.
+1. Reactivate now uses "rille", "rille-react".
+2. Reactivate is now an all in one solution for people who like all things Rille and React.
 
 #### 1.5.8
 1. "History" is now more fittingly named "Log".

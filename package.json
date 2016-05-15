@@ -1,6 +1,6 @@
 {
   "name": "reactivate",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Reactivate",
   "main": "dist/lib/index.js",
   "author": "dbmeads@hotmail.com",
@@ -26,9 +26,6 @@
   "dependencies": {
     "react": "^15.0.2",
     "rille": "^0.12.0",
-    "rille-react": "^0.7.0",
-    "rille-remote": "^0.2.0",
-    "socket.io": "^1.4.6",
-    "socket.io-client": "^1.4.6"
+    "rille-react": "^0.7.0"
   }
 }
