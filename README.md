@@ -5,6 +5,12 @@
 [![npm downloads](https://img.shields.io/npm/dm/reactivate.svg?style=flat-square)](https://www.npmjs.com/package/reactivate)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md#pull-requests)
 
+Reactivate is a module that is a composition of many other useful modules:
+
+1. [Rille](http://rille.io)
+2. [React](https://facebook.github.io/react/)
+3. [Socket.io](http://socket.io/)
+
 ## Quick Links
 
 #### General
