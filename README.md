@@ -68,10 +68,9 @@ var entry = [key, data, someOtherData];
 
 ## Route
 
-* The core of Rille is based on event routing.
-* Route is a basic extendable event router.
-* An "Entry" is a term we use to describe the array of data that is routed.
-* Entries have their "Key" which is the route they were pushed to as the first item in the Entry array.
+* The Rille is an event router at it's core and `Route` exposes that functionality.
+* You can `push` multiple pieces of data to any route.
+* Routes will emit an `Entry` for each `push` that was invoked.
 
 ```js
 import {Route} from 'reactivate';
