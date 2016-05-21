@@ -1,6 +1,6 @@
 {
   "name": "reactivate",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Reactivate",
   "main": "dist/lib/index.js",
   "author": "dbmeads@hotmail.com",
@@ -26,6 +26,6 @@
   "dependencies": {
     "react": "^15.0.2",
     "rille": "^0.15.0",
-    "rille-react": "^0.10.0"
+    "rille-react": "^0.11.0"
   }
 }
