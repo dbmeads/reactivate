@@ -18,8 +18,8 @@ Reactivate is a module that is a composition of many other useful modules:
 * [Change Log](#change-log)
 
 #### Modules
-* [Key](#key)
 * [Entry](#entry)
+* [Key](#key)
 * [Route](#route)
 * [Store](#store)
 * [Component](#component)
@@ -34,90 +34,113 @@ Reactivate is a module that is a composition of many other useful modules:
 
 [Back To Top](#quick-links)
 
-## Key
+## Entry
 
-Keys identify locations where data may be stored or routed.  They are similar to what you would see as a path in a file system or key in a key/value store.
+Entry provides some convenience functions for working with entries.  An entry is an array where the head is the key and the tail contains values (e.g.: ['/some/key', value1, value2, ...]).
+
 
 ```js
 
-// You can parse a key and get an array containing it's parts
-let keys = Key.parse('/some/path/that/I/should/parse');
+import {Entry} from 'rille';
 
-// You can stringify the parts of a key as well
-let key = Key.parse(['some','path','that','I','should','parse']);
+// Returns the array of values for an entry
+var values = Entry.values(entry);
+
+// Returns the key of an entry
+var key = Entry.key(entry);
 
 ```
 
 [Back To Top](#quick-links)
 
-## Entry
+## Key
 
-Entries are simply arrays where the first item (the head) is the key and the remaining items (the tail) contain data.
+Key provides convenience functions for parsing and stringify'ing keys.
 
 ```js
 
-// An example entry might look something like this
+import {Key} from 'rille';
 
-var key = '/some/key';
-var data = 'Hi!';
-var someOtherData = {created: '10/16/2015 10:15PM', user: 'Dan'};
+// Converts string format into array format
+var keys = Key.parse('/i/am/a/key');
 
-var entry = [key, data, someOtherData];
+// Converts array format into string format
+var key = Key.stringify(['i','am','a','key']);
 
 ```
-
 
 [Back To Top](#quick-links)
 
 ## Route
 
-* The Rille is an event router at it's core and `Route` exposes that functionality.
-* You can `push` multiple pieces of data to any route.
-* Routes will emit an `Entry` for each `push` that was invoked.
+Route is the core of Rille and provides support for routing entries (key + values) to appropriate subscribers.
 
 ```js
-import {Route} from 'reactivate';
 
-// You can create new root routes easily
+import {Route} from 'rille';
+
+// Create a route
 const route = Route();
 
-// You can define child routes on demand
-const child = route('/child/1');
-
-// You can subscribe to routes
-var unsubscribe = child.subscribe((key, value) => {
-    console.log("non wildcard: " + JSON.stringify([key, value]));
+// Subscribe to receive updates to a route
+route.subscribe((key, ...values) => {
+    console.log('My key is ' + key + ' and my values are ' + JSON.stringify(values));
 });
 
-// You can unsubscribe to routes
-unsubscribe();
-
-// You can subscribe to wildcard routes and get updates for all matching routes
-route('/child/*').subscribe((...entry) => {
-    console.log("wildcard: " + JSON.stringify(entry));
+// Subscribe to receive updates on a child route
+route('/child/1').subscribe((key, ...values) => {
+    console.log('My key is ' + key + ' and my values are ' + JSON.stringify(values));
 });
 
-// You can push any data to a route it's subscribers will get the data
-// 
-child.push({message: 'Hi!'});
+// Subscribe to receive updates for all child of a route (a wildcard route)
+route('/child/*').subscribe((key, ...values) => {
+    console.log('Wildcard Route: My key is ' + key + ' and my values are ' + JSON.stringify(values));
+});
+                 
+// Push a value(s) to a route
+route.push('Hi!');
+
+// Push value(s) of any type to a route
+route.push('Hi!', {user: 'Frank'}); 
+
+// Push value(s) to a child route
+route('/child/1').push('Hi child!');
+
 ```
+
+[Back To Top](#quick-links)
 
 ## Store
 
-* Store is simply a route that retains the most recent entry.
+Store is a route that retains it's most recent entry.
 
 ```js
-import {Store} from 'reactivate';
 
+import {Store} from 'rille';
+
+// Create a store just like a route
 const store = Store();
 
-// You can subscribe to receive state updates
-var unsubscribe = store.subscribe((key, value) => console.log('My name is ' + value + '!'));
+var child = store('/some/child');
 
-// You can update state
-store.push('Bob');
+// Subscribe to a store just like a route
+child.subscribe((...entry) => {
+    console.log('received ' + JSON.stringify(entry));
+});
 
-console.log(JSON.stringify(store.entry()));
+// Push to a store just like a route
+child.push('Hello child!');
+
+// Get the most recent entry
+var entry = child.entry();
+console.log('most recent entry ' + JSON.stringify(entry));
+
+// Get the array of values for the most recent entry
+var values = child.values();
+console.log('most recent values ' + JSON.stringify(values));
+
+// Get a particular value from the most recent entry
+console.log('message is "' + child.values(0) + '".');
 
 ```
 
