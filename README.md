@@ -41,7 +41,7 @@ Entry provides some convenience functions for working with entries.  An entry is
 
 ```js
 
-import {Entry} from 'rille';
+import {Entry} from 'reactivate';
 
 // Returns the array of values for an entry
 var values = Entry.values(entry);
@@ -59,7 +59,7 @@ Key provides convenience functions for parsing and stringify'ing keys.
 
 ```js
 
-import {Key} from 'rille';
+import {Key} from 'reactivate';
 
 // Converts string format into array format
 var keys = Key.parse('/i/am/a/key');
@@ -77,7 +77,7 @@ Route is the core of Rille and provides support for routing entries (key + value
 
 ```js
 
-import {Route} from 'rille';
+import {Route} from 'reactivate';
 
 // Create a route
 const route = Route();
@@ -116,7 +116,7 @@ Store is a route that retains it's most recent entry.
 
 ```js
 
-import {Store} from 'rille';
+import {Store} from 'reactivate';
 
 // Create a store just like a route
 const store = Store();
